@@ -32,26 +32,16 @@ This project implements an Apollo GraphQL server that handles book checkouts and
 
 ### Prerequisites
 
-- Node.js v18+
-- npm or yarn
+- Node.js v22+
+- npm 
 
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/library-checkout-system.git
-cd library-checkout-system
+
 npm install
-```
-
-### Running the Server
-
-```bash
-# Development
 npm run dev
 
-# Production build
-npm run build
-npm start
 ```
 
 The server will start at `http://localhost:4000` and the Apollo Sandbox will be available at the same URL.
@@ -111,15 +101,13 @@ query {
 
 ```graphql
 query {
-  getBookForId(bookId: "1") {
+  getBookForId(bookId: "101") {
     title
-    author
     isCheckedOut
     checkedOutBy {
       firstName
       lastName
       emailAddress
-      phoneNumber
     }
   }
 }
@@ -129,13 +117,9 @@ query {
 
 ```graphql
 mutation {
-  checkOutBook(bookId: "1", personId: "2") {
+  checkOutBook(bookId: "101", personId: "1") {
     title
     isCheckedOut
-    checkedOutBy {
-      firstName
-      lastName
-    }
   }
 }
 ```
@@ -144,10 +128,9 @@ mutation {
 
 ```graphql
 mutation {
-  returnBook(bookId: "1") {
+  returnBook(bookId: "101") {
     title
     isCheckedOut
-    checkedOutBy
   }
 }
 ```
@@ -172,11 +155,13 @@ The datastore is an in-memory implementation seeded with sample `Book` and `Pers
 
 ```
 src/
-├── index.ts          # Server entry point
-├── schema.ts         # GraphQL type definitions
-├── resolvers.ts      # Query and mutation resolvers
-├── datastore.ts      # In-memory data and seed records
-└── types.ts          # TypeScript interfaces
+├── index.ts
+├── types.ts
+├── data/
+│   └── store.ts
+└── schema/
+    ├── typeDefs.ts
+    └── resolvers.ts
 ```
 
 ---
