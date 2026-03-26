@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/viktordavidovich/graphql-get-started#readme",
   "dependencies": {
-    "@apollo/server": "^5.4.0",
+    "@apollo/server": "^5.5.0",
     "graphql": "^16.13.1"
   },
   "devDependencies": {
